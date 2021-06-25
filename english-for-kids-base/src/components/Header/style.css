@@ -1,0 +1,69 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 20px;
+  width: 100%;
+  max-width: 60px;
+  cursor: pointer;
+}
+
+span {
+  width: 30px;
+  height: 4px;
+  background-color: #c8c8c8;
+  margin: 0 auto;
+}
+
+.checkbox {
+  position: relative;
+  cursor: pointer;
+}
+
+input[type='checkbox'] {
+  cursor: pointer;
+  width: 60px;
+  height: 30px;
+  background-color: #4fbe79;
+  border-radius: 50px;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+input:checked[type='checkbox'] {
+  background-color: #d3d3d3;
+}
+
+input[type='checkbox']:before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 35px;
+  top: 5px;
+  left: 5px;
+  transition-duration: 0.3s;
+}
+
+input:checked[type='checkbox']:before {
+  left: 35px;
+}
+
+input[type='checkbox']::after {
+  content: 'Train';
+  position: absolute;
+  color: white;
+  top: 8px;
+  left: 26px;
+}
+
+input:checked[type='checkbox']::after {
+  content: 'Play';
+  left: 6px;
+}
