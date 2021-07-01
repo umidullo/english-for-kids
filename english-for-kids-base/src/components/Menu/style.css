@@ -18,8 +18,18 @@
   height: 100%;
   background: linear-gradient(180deg, #0099ae 0%, #00bf82 100%);
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+
   padding-top: 100px;
+}
+
+.menu__content_train {
+  background: linear-gradient(180deg, #0099ae 0%, #00bf82 100%);
+}
+.menu__content_game {
+  background: linear-gradient(40deg, #ffd86f, #fc6262);
 }
 
 ul {
@@ -34,6 +44,40 @@ ul li a {
   color: #ffffff;
   text-decoration: none;
   margin-bottom: 10px;
+}
+
+ul li a.active,
+ul li a:hover {
+  text-decoration: underline;
+}
+
+.login {
+  cursor: pointer;
+
+  width: 248px;
+  height: 60px;
+
+  border: 2px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 5px;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 22px;
+  line-height: 26px;
+  text-align: center;
+  text-transform: capitalize;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+.login:hover {
+  background-color: #0099ae;
+  transition: all 0.3s;
+}
+
+.login:active {
+  background-color: #00bf82;
+  transition: all 0.3s;
 }
 
 @media (max-width: 425px) {

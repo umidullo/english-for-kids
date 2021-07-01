@@ -1,28 +1,75 @@
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-.menu {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  height: 20px;
-  width: 100%;
-  max-width: 60px;
-  cursor: pointer;
-}
-
-span {
+.header span {
   width: 30px;
   height: 4px;
   background-color: #c8c8c8;
   margin: 0 auto;
 }
 
+.burger-btn {
+  z-index: 10;
+  position: relative;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.burger-btn_active span {
+  display: none;
+  transition: all 0.3s;
+}
+
+.burger-btn.burger-btn_active::before {
+  transform: rotate(-45deg);
+  margin-top: 8px;
+  background-color: #5c5c5c;
+  transition: all 0.3s;
+}
+
+.burger-btn.burger-btn_active::after {
+  transform: rotate(45deg);
+  margin-bottom: 8px;
+  background-color: #5c5c5c;
+  transition: all 0.3s;
+}
+
+.burger-btn span {
+  position: absolute;
+  width: 30px;
+  height: 4px;
+  background-color: #c8c8c8;
+  top: 8px;
+}
+
+.burger-btn::before {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 4px;
+  background-color: #c8c8c8;
+  top: 0;
+  transition: all 0.3s;
+}
+
+.burger-btn::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 4px;
+  background-color: #c8c8c8;
+  bottom: 0;
+  transition: all 0.3s;
+}
+
 .checkbox {
   position: relative;
   cursor: pointer;
+  z-index: 9;
 }
 
 input[type='checkbox'] {
@@ -66,4 +113,11 @@ input[type='checkbox']::after {
 input:checked[type='checkbox']::after {
   content: 'Play';
   left: 6px;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    width: 96%;
+    margin: 0 auto;
+  }
 }

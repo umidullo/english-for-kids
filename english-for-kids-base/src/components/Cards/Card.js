@@ -10,6 +10,7 @@ function Card({ word, translation, image, audio }) {
 
   const playAudio = (src) => {
     const audio = new Audio();
+    src = PATH + src
     audio.src = src;
     audio.currentTime = 0;
     audio.play();
@@ -24,9 +25,6 @@ function Card({ word, translation, image, audio }) {
     }}>
       <div className="card">
         <div className="card__front" >
-
-          <audio src={PATH + audio} type="audio/mpeg"></audio>
-
           <img className="card__img" src={PATH + image} alt="img" />
           <div className="descr">
             <p className="word">{word}</p>
