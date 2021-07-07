@@ -1,5 +1,5 @@
-const cards = [ 
-  ['Action (set A)', 'Action (set B)', 'Animal (set A)', 'Animal (set B)', 'Clothes', 'Emotions'],
+const cards = [
+  ['Action (set A)', 'Action (set B)', 'Animal (set A)', 'Animal (set B)', 'Clothes', 'Emotions', 'Nature', 'Transport'],
   [
     {
       word: 'cry',
@@ -299,11 +299,107 @@ const cards = [
       image: 'img/laugh.jpg',
       audioSrc: 'audio/laugh.mp3'
     }
+  ],
+  [
+    {
+      word: 'sun',
+      translation: 'солнце',
+      image: 'img/sun.jpg',
+      audioSrc: 'audio/sun.mp3'
+    },
+    {
+      word: 'island',
+      translation: 'остров',
+      image: 'img/island.jpg',
+      audioSrc: 'audio/island.mp3'
+    },
+    {
+      word: 'mountain',
+      translation: 'гора',
+      image: 'img/mountain.jpg',
+      audioSrc: 'audio/mountain.mp3'
+    },
+    {
+      word: 'volcano',
+      translation: 'вулкан',
+      image: 'img/volcano.jpg',
+      audioSrc: 'audio/volcano.mp3'
+    },
+    {
+      word: 'rainbow',
+      translation: 'радуга',
+      image: 'img/rainbow.jpg',
+      audioSrc: 'audio/rainbow.mp3'
+    },
+    {
+      word: 'cloud',
+      translation: 'облако',
+      image: 'img/cloud.jpg',
+      audioSrc: 'audio/cloud.mp3'
+    },
+    {
+      word: 'hill',
+      translation: 'холм',
+      image: 'img/hill.jpg',
+      audioSrc: 'audio/hill.mp3'
+    },
+    {
+      word: 'desert',
+      translation: 'пустыня',
+      image: 'img/desert.jpg',
+      audioSrc: 'audio/desert.mp3'
+    }
+  ],
+  [
+    {
+      word: 'yacht',
+      translation: 'яхта',
+      image: 'img/yacht.jpg',
+      audioSrc: 'audio/yacht.mp3'
+    },
+    {
+      word: 'truck',
+      translation: 'грузовик',
+      image: 'img/truck.jpg',
+      audioSrc: 'audio/truck.mp3'
+    },
+    {
+      word: 'train',
+      translation: 'поезд',
+      image: 'img/train.jpg',
+      audioSrc: 'audio/train.mp3'
+    },
+    {
+      word: 'helicopter',
+      translation: 'вертолет',
+      image: 'img/helicopter.jpg',
+      audioSrc: 'audio/helicopter.mp3'
+    },
+    {
+      word: 'car',
+      translation: 'машина',
+      image: 'img/car.jpg',
+      audioSrc: 'audio/car.mp3'
+    },
+    {
+      word: 'bus',
+      translation: 'автобус',
+      image: 'img/bus.jpg',
+      audioSrc: 'audio/bus.mp3'
+    },
+    {
+      word: 'bicycle',
+      translation: 'велосипед',
+      image: 'img/bicycle.jpg',
+      audioSrc: 'audio/bicycle.mp3'
+    },
+    {
+      word: 'airplane',
+      translation: 'самолет',
+      image: 'img/airplane.jpg',
+      audioSrc: 'audio/airplane.mp3'
+    }
   ]
 ]
-
-
-
-
 
 export default cards;
