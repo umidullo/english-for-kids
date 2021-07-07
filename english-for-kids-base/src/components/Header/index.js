@@ -13,7 +13,7 @@ function Header() {
         <span />
       </div>
       <div className="checkbox">
-        <input type="checkbox" checked={value.isPlayMode} onChange={() => value.setIsPlayMode(!value.isPlayMode)} />
+        <input type="checkbox" checked={value.isPlayMode} onChange={() => { value.setIsPlayMode(!value.isPlayMode); value.setGameStatus('started') }} />
       </div>
     </div>
   )
