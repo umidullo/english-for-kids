@@ -1,17 +1,25 @@
 import React, { useState, useContext } from 'react'
-import Context from '../../Context'
+import Context, { GlobalContext, GlobalState } from '../../Context'
+import { ICard } from '../interfaces'
 const FLIP_ICO = '/img/rotate.svg'
 const PATH = '/'
 
+interface ICardProps {
+  item: ICard;
+  // checkCard(src: string, f: React.Dispatch<React.SetStateAction<boolean>>): void;
+  checkCard?: (card: ICard | string, setDisabled: (param: boolean) => void) => void | ((src: string, f: React.Dispatch<React.SetStateAction<boolean>>) => void);
+}
 
-function Card({ item, checkCard }) {
-  const value = useContext(Context)
+const Card: React.FC<ICardProps> = ({ item, checkCard }) => {
+  const { isPlayMode } = useContext(
+    GlobalContext
+  ) as GlobalState;
 
-  const [isFlipCard, setIsFlipCard] = useState(false)
+  const [isFlipCard, setIsFlipCard] = useState<boolean>(false)
 
-  const [disabled, setDisabled] = useState(false)
+  const [disabled, setDisabled] = useState<boolean>(false)
 
-  const playAudio = (src) => {
+  const playAudio = (src: string) => {
     const audio = new Audio();
     src = PATH + src
     audio.src = src;
@@ -19,9 +27,9 @@ function Card({ item, checkCard }) {
     audio.play();
   }
 
-  if (value.isPlayMode) {
+  if (isPlayMode) {
     return (
-      <div className={disabled ? "card-container card-container_disabled" : "card-container"} onClick={() => checkCard(item.audioSrc, setDisabled)}>
+      <div className={disabled ? "card-container card-container_disabled" : "card-container"} onClick={() => checkCard!(item.audioSrc, setDisabled)}>
         <div className="card">
           <div className="card__front" >
             <div className="img_cover img_cover_game">

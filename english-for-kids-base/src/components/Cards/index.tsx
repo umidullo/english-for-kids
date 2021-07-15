@@ -1,8 +1,9 @@
 import './style.css'
 import Card from './Card'
 import { useState, useContext } from 'react'
-import Context from '../../Context'
+import Context, { GlobalContext, GlobalState } from '../../Context'
 import { Redirect } from "react-router-dom";
+import { ICard } from '../interfaces';
 
 const PATH = '/'
 const CORRECT_AUDIO = 'audio/correct.mp3'
@@ -11,28 +12,24 @@ const WIN_STAR = 'star-win'
 const LOSE_STAR = 'star'
 let CURRENT_CARD_SOUND = 0
 
+interface Props {
+  items: any;
+  // items: string[] | { word: string; translation: string; image: string; audioSrc: string; }[]
+  itemHeading?: string | ICard;
+}
 
-const Cards = ({ items, itemHeading }) => {
-  const value = useContext(Context)
-  const [gameStart, setGameStart] = useState('start')
-  const [star, setStar] = useState([]);
-  const [redirect, setRedirect] = useState(false)
+const Cards: React.FC<Props> = ({ items, itemHeading }) => {
+  const { isPlayMode,
+    setGameStatus,
+    gameStatus, } = useContext(GlobalContext) as GlobalState;
+
+  const [gameStart, setGameStart] = useState<string>('start')
+  const [star, setStar] = useState<string[]>([]);
+  const [redirect, setRedirect] = useState<boolean>(false)
   let cardBoxId = items
-  // let asd = items.slice()
+  const [notDisabled, setNotDisabled] = useState<number>(items.length - 1)
 
-  const [notDisabled, setNotDisabled] = useState(items.length - 1)
-
-
-  // const shuffleCards = (cards) => {
-  //   let shuffledCards = cards
-  //   for (let i = shuffledCards.length - 1; i >= 0; i--) {
-  //     let j = Math.floor(Math.random() * (i + 1));
-  //     [shuffledCards[i], shuffledCards[j]] = [shuffledCards[j], shuffledCards[i]];
-  //   }
-  //   return shuffledCards;
-  // }
-
-  const playAudio = (src) => {
+  const playAudio = (src: string) => {
     const audio = new Audio();
     src = PATH + src
     audio.src = src;
@@ -40,16 +37,16 @@ const Cards = ({ items, itemHeading }) => {
     audio.play();
   }
 
-  const checkCardStatus = (audio, image) => {
+  const checkCardStatus = (audio: string, image: string) => {
     setStar([...star, image])
     playAudio(audio)
   }
 
-  const checkCard = (card, setDisabled) => {
+  const checkCard = (card: ICard | string, setDisabled:(param: boolean) => void) => {
     if (gameStart === 'start') return
     if (cardBoxId[CURRENT_CARD_SOUND].audioSrc === card) {
       checkCardStatus(CORRECT_AUDIO, WIN_STAR)
-      setDisabled(true)
+      setDisabled:Boolean(true)
       setNotDisabled(notDisabled - 1);
       if (!notDisabled) {
         if (star.length + 1 === cardBoxId.length) {
@@ -63,7 +60,7 @@ const Cards = ({ items, itemHeading }) => {
             setRedirect(!redirect)
           }, 2000)
         }
-        value.setGameStatus('finished')
+        setGameStatus('finished')
         return
       }
       setTimeout(() => { playAudio(cardBoxId[CURRENT_CARD_SOUND].audioSrc) }, 1000)
@@ -82,9 +79,9 @@ const Cards = ({ items, itemHeading }) => {
     }
   }
 
-  if (value.gameStatus === 'finished') {
+  if (gameStatus === 'finished') {
     setTimeout(() => {
-      value.setGameStatus(null)
+      setGameStatus(null)
       CURRENT_CARD_SOUND = 0
       setGameStart('start')
     }, 2000)
@@ -107,7 +104,7 @@ const Cards = ({ items, itemHeading }) => {
     }
   }
 
-  if (value.isPlayMode) {
+  if (isPlayMode) {
     return (
       <main className="main">
         <div className="title_score">
@@ -117,12 +114,12 @@ const Cards = ({ items, itemHeading }) => {
           </div>
         </div>
         <div className="cards-field">
-          {items.map((item, index) =>
+          {items.map((item:ICard, index: number) =>
             <Card key={index} item={item} checkCard={checkCard} />
           )}
         </div>
         <div className="play-controls">
-          <button className={gameStart == 'repeat' ? "play-Btn play-Btn_repeat" : "play-Btn"} onClick={() => checkStatus()}>{gameStart}</button>
+          <button className={gameStart === 'repeat' ? "play-Btn play-Btn_repeat" : "play-Btn"} onClick={() => checkStatus()}>{gameStart}</button>
         </div>
       </main>
     )
@@ -135,7 +132,7 @@ const Cards = ({ items, itemHeading }) => {
         <div className="category__tytle">{itemHeading}</div>
       </div>
       <div className="cards-field">
-        {items.map((item, index) =>
+        {items.map((item: ICard, index: number) =>
           <Card key={index} item={item} />
         )}
       </div>

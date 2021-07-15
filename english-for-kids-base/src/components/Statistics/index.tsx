@@ -1,10 +1,11 @@
 import './style.css'
 import cards from '../../assets/cards'
+import { ICard } from '../interfaces'
 
-const Statistics = () => {
+const Statistics: React.FC = () => {
 
-  const cardsHeadings = cards[0]
-  const cardsItems = cards.slice(1)
+  const cardsHeadings:string[] | { word: string; translation: string; image: string; audioSrc: string; }[] = cards[0]
+  const cardsItems: any = cards.slice(1)
 
   return (
     <div className="stats">
@@ -26,8 +27,8 @@ const Statistics = () => {
             </tr>
           </thead>
           <tbody className="table-hover">
-            {cardsItems.map((item, ind) =>
-              item.map((item, index) =>
+            {cardsItems.map((item:ICard[], ind: number) =>
+              item.map((item:ICard, index: number) =>
                 <tr key={index}>
                   <td className="text-left">{item.word}</td>
                   <td className="text-left">{item.translation}</td>

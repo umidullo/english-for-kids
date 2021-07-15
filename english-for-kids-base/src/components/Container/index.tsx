@@ -1,6 +1,10 @@
 import './style.css'
 
-function Container({ children }) {
+interface Props  { 
+  children: React.ReactNode
+}
+
+const Container: React.FC<Props> = ({ children }) => {
   return (
     <div className="wrapper">{children}</div>
   )
